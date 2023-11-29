@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+    app:
+        image: dunglas/frankenphp
+#        build:
+#            context: .
+#            dockerfile: docker/php/Dockerfile
+#            args:
+#                HOST_UID: ${HOST_UID}
+#                HOST_GID: ${HOST_GID}
+        container_name: franken_php
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./:/app
+            - caddy_data:/data
+            - caddy_config:/config
+        tty: true
+
+# Volumes needed for Caddy certificates and configuration
+volumes:
+    caddy_data:
+    caddy_config:
